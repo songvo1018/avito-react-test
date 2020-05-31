@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import List from './List/List'
+import './Gallery.css'
 
 export class Gallery extends Component {
   constructor(props) {
@@ -9,9 +10,10 @@ export class Gallery extends Component {
         this.state = {
           isGetting: false
         };
+        this.updateState = this.updateState.bind(this)
   }
 
-  axiosRequest() {
+  axiosSmallSizeRequest() {
     axios
 			.get("https://boiling-refuge-66454.herokuapp.com/images")
 			.then((response) => {
@@ -27,30 +29,27 @@ export class Gallery extends Component {
 
   checkIsGetting() {
     let isGetting = this.state.isGetting
-    return(
-      <>{isGetting ? this.renderListPhotos() : 'Loading...'}</>
-    )
+    return (
+			<>{isGetting ? <List updateState={this.updateState} data={this.state.response} /> : "Loading..."}</>
+		);
+  }
+
+  updateState(newData) {
+    let prevData = this.state.response.data
+    console.log(prevData, newData);
+    
+    // this.setState({
+    //   response: newData
+    // })
   }
 
   componentDidMount () {
-    console.log('before axios');
-    this.axiosRequest()
-    console.log('after axios');
-    
-  }
-
-  renderListPhotos() {
-    return (
-			<div>
-				<List data={this.state.response} />
-			</div>
-		);
-    
+    this.axiosSmallSizeRequest()
   }
   
   render() {
     return(
-      <div>
+      <div className="gallery">
         {this.checkIsGetting()}
 
       </div>
