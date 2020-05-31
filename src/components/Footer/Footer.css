@@ -1,0 +1,16 @@
+.footer {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: #CCCCCC;
+  position: absolute;
+    bottom: 64px;
+    left: 43%;
+}
