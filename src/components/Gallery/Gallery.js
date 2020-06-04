@@ -13,8 +13,8 @@ export class Gallery extends Component {
         this.updateState = this.updateState.bind(this)
   }
 
-  axiosSmallSizeRequest() {
-    axios
+  async axiosSmallSizeRequest() {
+    await axios
 			.get("https://boiling-refuge-66454.herokuapp.com/images")
 			.then((response) => {
         this.setState({
@@ -33,6 +33,8 @@ export class Gallery extends Component {
 			<>{isGetting ? <List updateState={this.updateState} data={this.state.response} /> : "Loading..."}</>
 		);
   }
+
+  
 
   updateState(newData) {
     let prevData = this.state.response.data
